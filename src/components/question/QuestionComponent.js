@@ -5,30 +5,32 @@ function QuestionComponent() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/tasks`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-student-id": "23WH1A0515"
-      }
+    fetch("http://bvrithcloud.com/api/tasks", {
+      headers: { "x-student-id": "23WH1A0515" }
     })
       .then(res => res.json())
-      .then(data => setTasks(data));
+      .then(data => {
+        console.log(data);
+        setTasks(Array.isArray(data) ? data : data.data || []);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return (
-    <div>
+    <div className="container"> {/* ✅ fixed */}
       <h2>Tasks</h2>
 
-      {tasks.map(task => (
-        <div key={task._id} style={{ marginBottom: "20px" }}>
-          <h3>{task.title}</h3>
-          <p>{task.description}</p>
-          <p>Status: {task.status}</p>
-
-          <Link to={`/task/${task._id}`}>View Details</Link>
-        </div>
-      ))}
+      {tasks.length === 0 ? (
+        <p>Loading or No Tasks...</p>
+      ) : (
+        tasks.map(t => (
+          <div key={t.id || t._id}>
+            <h3>{t.title}</h3>
+            <p>Status: <b>{t.status}</b></p>
+            <Link to={`/task/${t.id || t._id}`}>View</Link>
+          </div>
+        ))
+      )}
     </div>
   );
 }

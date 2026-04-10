@@ -1,15 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
-import Tasks from './pages/Tasks';
+import QuestionPage from './pages/QuestionPage';
 import TaskDetails from './pages/TaskDetails';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/tasks" element={<QuestionPage />} />
         <Route path="/task/:id" element={<TaskDetails />} />
       </Routes>
     </Router>
