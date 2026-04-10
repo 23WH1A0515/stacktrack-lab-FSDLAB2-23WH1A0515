@@ -1,19 +1,12 @@
-import React from 'react';
-
-// TODO: Replace placeholder values with actual student and lab identifiers
-const STUDENT_ID = 'STUDENT_ID_PLACEHOLDER';
-const LAB_ID = 'LAB_ID_PLACEHOLDER';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div>
-      <h1>Stack Track Lab</h1>
-      <p>Student ID: {STUDENT_ID}</p>
-      <p>Lab ID: {LAB_ID}</p>
-
-      {/* TODO: Replace this placeholder with your question set UI */}
-      <p>QuestionComponent placeholder — implement your assigned question set here.</p>
-
+      <h1>Home</h1>
+      <p>Welcome to Stack Track Lab</p>
+      <Link to="/tasks">View Tasks</Link>
     </div>
   );
 }
